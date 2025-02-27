@@ -19,37 +19,38 @@
       <div class="tooltip">早いですね。</div>
     </div>
     <script>
-      const TOOLTIP_WIDTH = 200;
       const buttons = document.querySelectorAll(".button");
       const tooltips = document.querySelectorAll(".tooltip");
 
       buttons.forEach((button, index) => {
         const tooltip = tooltips[index];
+
         button.addEventListener("click", () => {
           if (tooltip.style.display === "block") {
             tooltip.style.display = "none";
             return;
           }
+          // ツールチップを表示
+          tooltip.style.display = "block";
 
           const buttonRect = button.getBoundingClientRect();
-
           // 初期のツールチップ位置は、ボタンの右側（ボタンのleft+width）
           let tooltipX = buttonRect.left + buttonRect.width;
           const tooltipY = buttonRect.top;
 
+          const tooltipRect = tooltip.getBoundingClientRect();
+          const tooltipWidth = tooltipRect.width;
           // 画面の幅を取得
           const windowWidth = window.innerWidth;
 
           // ツールチップの右端が画面外に出る場合は左側に表示する
-          if (tooltipX + TOOLTIP_WIDTH > windowWidth) {
-            tooltipX = buttonRect.left - TOOLTIP_WIDTH;
+          if (tooltipX + tooltipWidth > windowWidth) {
+            tooltipX = buttonRect.left - tooltipWidth;
           }
 
-          // ツールチップの位置を更新
+          // ツールチップの位置を設定
           tooltip.style.left = `${tooltipX}px`;
           tooltip.style.top = `${tooltipY}px`;
-          // ツールチップを表示
-          tooltip.style.display = "block";
         });
       });
     </script>
