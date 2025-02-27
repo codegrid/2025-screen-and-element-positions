@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ツールチップの例</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div>
+      <button class="button">
+        <span class="icon">i</span>
+      </button>
+      <div class="tooltip">もう1年の1/3が終わろうとしていますよ。</div>
+    </div>
+    <div class="positionRight">
+      <button class="button">
+        <span class="icon">i</span>
+      </button>
+      <div class="tooltip">早いですね。</div>
+    </div>
+    <script>
+      const TOOLTIP_WIDTH = 200;
+      const buttons = document.querySelectorAll(".button");
+      const tooltips = document.querySelectorAll(".tooltip");
+
+      buttons.forEach((button, index) => {
+        const tooltip = tooltips[index];
+        button.addEventListener("click", () => {
+          if (tooltip.style.display === "block") {
+            tooltip.style.display = "none";
+            return;
+          }
+
+          const buttonRect = button.getBoundingClientRect();
+
+          // 初期のツールチップ位置は、ボタンの右側（ボタンのleft+width）
+          let tooltipX = buttonRect.left + buttonRect.width;
+          const tooltipY = buttonRect.top;
+
+          // 画面の幅を取得
+          const windowWidth = window.innerWidth;
+
+          // ツールチップの右端が画面外に出る場合は左側に表示する
+          if (tooltipX + TOOLTIP_WIDTH > windowWidth) {
+            tooltipX = buttonRect.left - TOOLTIP_WIDTH;
+          }
+
+          // ツールチップを表示
+          tooltip.style.display = "block";
+
+          // ツールチップの位置を更新
+          tooltip.style.left = `${tooltipX}px`;
+          tooltip.style.top = `${tooltipY}px`;
+        });
+      });
+    </script>
+  </body>
+</html>

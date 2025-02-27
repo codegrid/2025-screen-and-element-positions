@@ -1,0 +1,38 @@
+.tooltip {
+  position: absolute;
+  display: none;
+  box-sizing: border-box;
+  width: 200px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  z-index: 10;
+}
+
+.button {
+  position: relative;
+  margin: 0;
+  padding: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.button .icon {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid blue;
+  border-radius: 100%;
+  color: blue;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.positionRight {
+  display: flex;
+  justify-content: flex-end;
+}
