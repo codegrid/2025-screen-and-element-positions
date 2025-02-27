@@ -45,12 +45,11 @@
             tooltipX = buttonRect.left - TOOLTIP_WIDTH;
           }
 
-          // ツールチップを表示
-          tooltip.style.display = "block";
-
           // ツールチップの位置を更新
           tooltip.style.left = `${tooltipX}px`;
           tooltip.style.top = `${tooltipY}px`;
+          // ツールチップを表示
+          tooltip.style.display = "block";
         });
       });
     </script>
